@@ -1,6 +1,8 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Card from "./Card";
+import LoginAndLibrary from "./LoginAndLibrary"
+
 
 export const mockData = [
     {
@@ -17,6 +19,7 @@ export const mockData = [
 export default function Example() {
     return (
         <>
+          <LoginAndLibrary />
             <Header />
 
             <div className="py-10">
