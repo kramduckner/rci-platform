@@ -10,16 +10,14 @@ export default async function CardDetail({
 }: {
     params: { id: string };
 }) {
-    const { data } = await supabase
-        .from("datasets")
-        .select("*")
-        .eq("id", params.id);
+    const { id } = await params;
+    const { data } = await supabase.from("datasets").select("*").eq("id", id);
 
     if (!data) {
         notFound();
     }
 
-    const dataset = data[0]
+    const dataset = data[0];
 
     return (
         <>
@@ -37,16 +35,22 @@ export default async function CardDetail({
                                 </Link>
                             </div>
                             <div className="w-100 px-4 py-5 border-1 border-gray-300 overflow-hidden rounded-lg bg-white shadow-md">
-                                <div>
-                                    <div className="text-xl font-bold sm:px-6">
-                                        {dataset.title}
-                                    </div>
-                                    <div className=" text-lg sm:px-6">
-                                        {dataset.description}
-                                    </div>
+                                <header className="text-xl mb-8 font-bold sm:px-6">
+                                    {dataset.title}
+                                </header>
+
+                                <h2 className="font-bold">Dataset Overview</h2>
+                                <div className="sm:px-6">
+                                    Created Date: {dataset.created_at}
                                 </div>
 
-                                <div className="sm:p-6">{dataset.publisher}</div>
+                                <div className="sm:px-6">
+                                    Description: {dataset.description}
+                                </div>
+                                
+                                <div className="sm:p-6">
+                                    Publisher: {dataset.publisher}
+                                </div>
 
                                 <Button>View in Looker Studio</Button>
                             </div>
