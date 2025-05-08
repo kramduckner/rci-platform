@@ -1,16 +1,25 @@
 import Header from "@/app/Header";
 import { mockData } from "@/app/page";
+import { supabase } from "@/app/supabaseClient";
+import { Button } from "@headlessui/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default function CardDetail({ params }: { params: { id: string } }) {
-    const cardId = parseInt(params.id);
+export default async function CardDetail({
+    params,
+}: {
+    params: { id: string };
+}) {
+    const { data } = await supabase
+        .from("datasets")
+        .select("*")
+        .eq("id", params.id);
 
-    const card = mockData.find((item) => item.id === cardId);
-
-    if (!card) {
+    if (!data) {
         notFound();
     }
+
+    const dataset = data[0]
 
     return (
         <>
@@ -27,13 +36,19 @@ export default function CardDetail({ params }: { params: { id: string } }) {
                                     ← Back to Dashboard
                                 </Link>
                             </div>
-                            <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-6">
-                                {card.name}'s Details
-                            </h1>
-                            <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6">
-                                <p className="text-gray-700 mb-4">
-                                    {card.content}
-                                </p>
+                            <div className="w-100 px-4 py-5 border-1 border-gray-300 overflow-hidden rounded-lg bg-white shadow-md">
+                                <div>
+                                    <div className="text-xl font-bold sm:px-6">
+                                        {dataset.title}
+                                    </div>
+                                    <div className=" text-lg sm:px-6">
+                                        {dataset.description}
+                                    </div>
+                                </div>
+
+                                <div className="sm:p-6">{dataset.publisher}</div>
+
+                                <Button>View in Looker Studio</Button>
                             </div>
                         </div>
                     </div>

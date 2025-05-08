@@ -2,6 +2,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Card from "./Card";
 import LoginAndLibrary from "./LoginAndLibrary";
+import { supabase } from "./supabaseClient";
 
 export const mockData = [
     {
@@ -12,7 +13,10 @@ export const mockData = [
     { id: 2, name: "Mark", content: "hello" },
 ];
 
-export default function Example() {
+export default async function Example() {
+      const { data } = await supabase.from("datasets").select("*");
+
+      console.log(data)
     return (
         <>
             <LoginAndLibrary />
@@ -24,17 +28,16 @@ export default function Example() {
                         <Sidebar />
 
                         <div>
-                            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-                                Dashboard
+                            <h1 className="text-3xl mb-6 font-bold tracking-tight text-gray-900">
+                                RCI Discovery Dashboard
                             </h1>
 
                             <div className="flex flex-col gap-8">
-                                {mockData.map((data) => (
+                                {data?.map((data) => (
                                     <Card
                                         key={data.id}
                                         id={data.id}
-                                        name={data.name}
-                                        content={data.content}
+                                        data={data}
                                     />
                                 ))}
                             </div>

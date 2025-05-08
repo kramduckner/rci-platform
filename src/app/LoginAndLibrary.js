@@ -43,22 +43,34 @@ export default function AuthGateWithModal() {
     await supabase.auth.signOut()
     setSession(null)
   }
-  if (session){
-    return null
-  } else {
-    return <AuthModal
-                 email={email}
-                 setEmail={setEmail}
-                 password={password}
-                 setPassword={setPassword}
-                 onSubmit={handleAuth}
-                 loading={loading}
-                 error={error}
-                 authMode={authMode}
-                 setAuthMode={setAuthMode}
-       />
-  }
-  
+
+  return (
+    <div className=" bg-gray-50 p-6 flex flex-col items-center justify-center">
+      {session ? (
+        <>
+          <h1 className="text-2xl font-bold mb-4 text-gray-800">Welcome, you're logged in!</h1>
+          <button
+            onClick={handleLogout}
+            className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
+          >
+            Log Out
+          </button>
+        </>
+      ) : (
+        <AuthModal
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          onSubmit={handleAuth}
+          loading={loading}
+          error={error}
+          authMode={authMode}
+          setAuthMode={setAuthMode}
+        />
+      )}
+    </div>
+  )
 }
 
 function AuthModal({
