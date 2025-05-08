@@ -7,6 +7,7 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/react";
+import { supabase } from "./supabaseClient"; 
 import Sidebar from "./Sidebar";
 
 const user = {
@@ -21,15 +22,24 @@ const navigation = [
     { name: "Projects", href: "#", current: false },
     { name: "Calendar", href: "#", current: false },
 ];
+
+const handleSignOut = async () => {
+    alert('sup')
+    await supabase.auth.signOut();
+    window.location.reload(); 
+};
+
 const userNavigation = [
     { name: "Your Profile", href: "#" },
     { name: "Settings", href: "#" },
-    { name: "Sign out", href: "#" },
+        { name: "Sign out", action: handleSignOut },
 ];
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
+
+
 
 export default function Example() {
     return (
@@ -100,20 +110,22 @@ export default function Example() {
                                     transition
                                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                                 >
-                                    {userNavigation.map((item) => (
-                                        <MenuItem key={item.name}>
+                                  {userNavigation.map((item) => (
+                                      <MenuItem key={item.name}>
+                                        {item.action ?( 
                                             <a
-                                                href={item.href}
-                                                className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                                              href={item.href}
+                                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                                             >
-                                                {item.name}
-                                            </a>
-                                        </MenuItem>
-                                    ))}
+                                              {item.name}
+                                            </a>) : <button  className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{item.name}</button>
+                                        }
+                                      </MenuItem>
+                                  ))}
                                 </MenuItems>
                             </Menu>
                         </div>
-                        <div className="-mr-2 flex items-center sm:hidden">
+                      <div className="-mr-2 flex items-center sm:hidden">
                             {/* Mobile menu button */}
                             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
                                 <span className="absolute -inset-0.5" />
