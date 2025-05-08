@@ -2,12 +2,13 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Card from "./Card";
 
-const mockData = [
+export const mockData = [
     {
+        id: 1,
         name: "Justin",
         content: "hello",
     },
-    {
+    {   id: 2,
         name: "Mark",
         content: "hello",
     },
@@ -29,9 +30,9 @@ export default function Example() {
                             </h1>
 
                             <div className="flex flex-col gap-8">
-                                {mockData.map((data, index) => (
+                                {mockData.map((data) => (
                                     <Card
-                                        key={index}
+                                        id={data.id}
                                         name={data.name}
                                         content={data.content}
                                     />
