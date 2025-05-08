@@ -3,7 +3,7 @@ import { mockData } from "@/app/page";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default function CardDetail({ params }) {
+export default function CardDetail( params: any) {
     const cardId = parseInt(params.id);
 
     const card = mockData.find((item) => item.id === cardId);
