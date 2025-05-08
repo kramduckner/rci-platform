@@ -1,8 +1,7 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Card from "./Card";
-import LoginAndLibrary from "./LoginAndLibrary"
-
+import LoginAndLibrary from "./LoginAndLibrary";
 
 export const mockData = [
     {
@@ -10,16 +9,13 @@ export const mockData = [
         name: "Justin",
         content: "hello",
     },
-    {   id: 2,
-        name: "Mark",
-        content: "hello",
-    },
+    { id: 2, name: "Mark", content: "hello" },
 ];
 
 export default function Example() {
     return (
         <>
-          <LoginAndLibrary />
+            <LoginAndLibrary />
             <Header />
 
             <div className="py-10">
@@ -35,6 +31,7 @@ export default function Example() {
                             <div className="flex flex-col gap-8">
                                 {mockData.map((data) => (
                                     <Card
+                                        key={data.id}
                                         id={data.id}
                                         name={data.name}
                                         content={data.content}
