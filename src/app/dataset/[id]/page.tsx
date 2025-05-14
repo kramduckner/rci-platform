@@ -10,7 +10,7 @@ export default async function CardDetail({
 }: {
     params: { id: string };
 }) {
-    const { id } = await params;
+    const { id } = params;
     const { data } = await supabase.from("datasets").select("*").eq("id", id);
 
     if (!data) {
