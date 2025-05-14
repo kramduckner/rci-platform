@@ -5,12 +5,10 @@ import { Button } from "@headlessui/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export default async function CardDetail({
-    params,
-}: {
-    params: { id: string };
-}) {
-    const { id } = params;
+type Params = Promise<{ id: string }>;
+
+export default async function CardDetail({ params }: { params: Params }) {
+    const { id } = await params;
     const { data } = await supabase.from("datasets").select("*").eq("id", id);
 
     if (!data) {
@@ -47,7 +45,7 @@ export default async function CardDetail({
                                 <div className="sm:px-6">
                                     Description: {dataset.description}
                                 </div>
-                                
+
                                 <div className="sm:p-6">
                                     Publisher: {dataset.publisher}
                                 </div>
