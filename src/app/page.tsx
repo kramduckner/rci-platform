@@ -19,7 +19,7 @@ export default async function Example() {
       console.log(data)
     return (
         <>
-            <LoginAndLibrary />
+            {/* <LoginAndLibrary /> */}
             <Header />
 
             <div className="py-10">
