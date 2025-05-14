@@ -48,7 +48,7 @@ export default function AuthGateWithModal() {
     <div className=" bg-gray-50 p-6 flex flex-col items-center justify-center">
       {session ? (
         <>
-          <h1 className="text-2xl font-bold mb-4 text-gray-800">Welcome, you're logged in!</h1>
+          <h1 className="text-2xl font-bold mb-4 text-gray-800">{`Welcome, you're logged in!`}</h1>
           <button
             onClick={handleLogout}
             className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"

@@ -1,17 +1,17 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Card from "./Card";
-import LoginAndLibrary from "./LoginAndLibrary";
+// import LoginAndLibrary from "./LoginAndLibrary";
 import { supabase } from "./supabaseClient";
 
-export const mockData = [
-    {
-        id: 1,
-        name: "Justin",
-        content: "hello",
-    },
-    { id: 2, name: "Mark", content: "hello" },
-];
+// export const mockData = [
+//     {
+//         id: 1,
+//         name: "Justin",
+//         content: "hello",
+//     },
+//     { id: 2, name: "Mark", content: "hello" },
+// ];
 
 export default async function Example() {
       const { data } = await supabase.from("datasets").select("*");

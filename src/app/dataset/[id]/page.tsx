@@ -1,5 +1,4 @@
 import Header from "@/app/Header";
-import { mockData } from "@/app/page";
 import { supabase } from "@/app/supabaseClient";
 import { Button } from "@headlessui/react";
 import Link from "next/link";

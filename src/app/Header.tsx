@@ -8,7 +8,8 @@ import {
     MenuItems,
 } from "@headlessui/react";
 import { supabase } from "./supabaseClient"; 
-import Sidebar from "./Sidebar";
+import Image from "next/image";
+// import Sidebar from "./Sidebar";
 
 const user = {
     name: "Tom Cook",
@@ -49,12 +50,12 @@ export default function Example() {
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <img
+                                <Image
                                     alt="Your Company"
                                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     className="block h-8 w-auto lg:hidden"
                                 />
-                                <img
+                                <Image
                                     alt="Your Company"
                                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     className="hidden h-8 w-auto lg:block"
@@ -99,7 +100,7 @@ export default function Example() {
                                         <span className="sr-only">
                                             Open user menu
                                         </span>
-                                        <img
+                                        <Image
                                             alt=""
                                             src={user.imageUrl}
                                             className="size-8 rounded-full"
@@ -157,7 +158,7 @@ export default function Example() {
                     <div className="border-t border-gray-200 pt-4 pb-3">
                         <div className="flex items-center px-4">
                             <div className="shrink-0">
-                                <img
+                                <Image
                                     alt=""
                                     src={user.imageUrl}
                                     className="size-10 rounded-full"

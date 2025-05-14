@@ -3,7 +3,7 @@ import Link from "next/link";
 interface CardProps {
     key: number;
     id: number;
-    data: any;
+    data: { title: string; description: string; publisher: string };
 }
 
 export default function Card(props: CardProps) {

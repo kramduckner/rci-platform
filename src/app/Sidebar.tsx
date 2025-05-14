@@ -1,15 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import {
     Dialog,
     DialogBackdrop,
     DialogPanel,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    TransitionChild,
+    TransitionChild
 } from "@headlessui/react";
 import {
     CalendarIcon,
@@ -21,10 +16,8 @@ import {
     UsersIcon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
-import {
-    ChevronDownIcon,
-    MagnifyingGlassIcon,
-} from "@heroicons/react/20/solid";
+import { useState } from "react";
+import Image from "next/image";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -44,10 +37,10 @@ const teams = [
     { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
     { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
-const userNavigation = [
-    { name: "Your profile", href: "#" },
-    { name: "Sign out", href: "#" },
-];
+// const userNavigation = [
+//     { name: "Your profile", href: "#" },
+//     { name: "Sign out", href: "#" },
+// ];
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
@@ -190,7 +183,7 @@ export default function Sidebar() {
                     {/* Sidebar component, swap this element with another sidebar if you like */}
                     <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
                         <div className="flex h-16 shrink-0 items-center">
-                            <img
+                            <Image
                                 alt="Your Company"
                                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                 className="h-8 w-auto"
@@ -284,8 +277,6 @@ export default function Sidebar() {
                 </div>
 
                 <div className="lg:pl-72">
-               
-
                     <main className="py-10">
                         <div className="px-4 sm:px-6 lg:px-8">
                             {/* Your content */}
