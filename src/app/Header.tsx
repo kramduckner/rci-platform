@@ -51,11 +51,15 @@ export default function Example() {
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Image
+                                  width="100"
+                                  height="100"
                                     alt="Your Company"
                                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     className="block h-8 w-auto lg:hidden"
                                 />
                                 <Image
+                                  width="100"
+                                  height="100"
                                     alt="Your Company"
                                     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     className="hidden h-8 w-auto lg:block"
@@ -101,6 +105,8 @@ export default function Example() {
                                             Open user menu
                                         </span>
                                         <Image
+                                          width="100"
+                                  height="100"
                                             alt=""
                                             src={user.imageUrl}
                                             className="size-8 rounded-full"
