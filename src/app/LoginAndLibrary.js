@@ -10,6 +10,7 @@ export default function AuthGateWithModal() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -17,11 +18,12 @@ export default function AuthGateWithModal() {
     })
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      console.log(session.user);
+      
       setSession(session)
     })
 
     return () => listener.subscription.unsubscribe()
+    
   }, [])
 
   const handleAuth = async () => {
