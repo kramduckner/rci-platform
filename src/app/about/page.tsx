@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Sidebar from "../Sidebar";
 import Header from "../Header";
-import Card from "../Card";
+//import Card from "../Card";
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -300,7 +300,7 @@ export default function AboutPage() {
                     <div className="text-center">
                       <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Data Collection</h2>
                       <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                        We maintain the world's largest repository of caregiving data, spanning demographics, 
+                        We maintain the largest repository of caregiving data, spanning demographics, 
                         health outcomes, economic impacts, and psychosocial factors.
                       </p>
                     </div>

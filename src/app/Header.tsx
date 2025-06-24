@@ -7,9 +7,10 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/react";
-import { supabase } from "./supabaseClient"; 
+//import { supabase } from "./supabaseClient"; 
 import Image from "next/image";
 // import Sidebar from "./Sidebar";
+//import { usePathname } from 'next/navigation';
 
 const user = {
     name: "Tom Cook",
@@ -24,11 +25,11 @@ const navigation = [
     { name: "My Requests", href: "/requests", current: false },
 ];
 
-const handleSignOut = async () => {
-    alert('sup')
-    await supabase.auth.signOut();
-    window.location.reload(); 
-};
+// const handleSignOut = async () => {
+//     alert('sup')
+//     await supabase.auth.signOut();
+//     window.location.reload(); 
+// };
 
 const userNavigation = [
     { name: "My Account", href: "#" },
@@ -107,7 +108,7 @@ export default function Example() {
                       transition
                       className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                     >
-                      {userNavigation.map((item) => (
+                      {userNavigation.map((item:any) => (
                           <MenuItem key={item.name}>
                             {item.action ?( 
                                 <a

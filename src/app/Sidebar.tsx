@@ -7,17 +7,17 @@ import {
     TransitionChild
 } from "@headlessui/react";
 import {
-    CalendarIcon,
-    ChartPieIcon,
+    //CalendarIcon,
+    //ChartPieIcon,
     Cog6ToothIcon,
-    DocumentDuplicateIcon,
+    //DocumentDuplicateIcon,
     FolderIcon,
     HomeIcon,
     UsersIcon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import Image from "next/image";
+//import Image from "next/image";
 import { usePathname } from 'next/navigation';
 
 

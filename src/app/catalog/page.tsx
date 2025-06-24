@@ -5,10 +5,10 @@ import { supabase } from "../supabaseClient";
 
 
 export default async function Example() {
-  const { data } = await supabase.from("datasets").select("");
+  const { data }:any = await supabase.from("datasets").select("");
   
   // Group datasets by category for better organization
-  const datasetsByCategory = data?.reduce((acc, dataset) => {
+  const datasetsByCategory = data?.reduce((acc:any, dataset:any) => {
     const category = dataset.category || 'Other';
     if (!acc[category]) acc[category] = [];
     acc[category].push(dataset);
@@ -17,7 +17,7 @@ export default async function Example() {
 
   const totalDatasets = data?.length || 0;
   const categories = Object.keys(datasetsByCategory);
-  const featuredDatasets = data?.filter(d => d.featured)?.slice(0, 3) || [];
+  const featuredDatasets:any = data?.filter((d:any) => d.featured)?.slice(0, 3) || [];
   
   return (
     <>
@@ -69,7 +69,7 @@ export default async function Example() {
                     </div>
                     <select className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                       <option value="">All Categories</option>
-                      {categories.map(category => (
+                      {categories.map((category:any) => (
                         <option key={category} value={category}>{category}</option>
                       ))}
                     </select>
@@ -85,7 +85,7 @@ export default async function Example() {
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Datasets</h2>
                   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-                    {featuredDatasets.map((dataset) => (
+                    {featuredDatasets.map((dataset:any) => (
                       <div key={`featured-${dataset.id}`} className="relative">
                         <div className="absolute top-2 right-2 z-10">
                           <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
@@ -93,6 +93,7 @@ export default async function Example() {
                           </span>
                         </div>
                         <Card
+                          key={dataset.id}
                           id={dataset.id}
                           data={dataset}
                         />
@@ -150,7 +151,7 @@ export default async function Example() {
 
                 {/* Datasets Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {data?.map((dataset) => (
+                  {data?.map((dataset:any) => (
                     <Card
                       key={dataset.id}
                       id={dataset.id}
@@ -188,7 +189,7 @@ export default async function Example() {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-3">Data Governance</h3>
                     <p className="text-gray-600 mb-2">
-                      All datasets are subject to RCI's data governance policies and access controls.
+                      All datasets are subject to the RCI data governance policies and access controls.
                     </p>
                     <button className="text-blue-600 hover:text-blue-800 font-medium">
                       View Policies →

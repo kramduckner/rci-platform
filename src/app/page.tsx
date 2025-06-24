@@ -1,6 +1,6 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import Card from "./Card";
+//import Card from "./Card";
 // import LoginAndLibrary from "./LoginAndLibrary";
 import { supabase } from "./supabaseClient";
 
@@ -21,7 +21,14 @@ export default async function Example() {
     const totalCaregivers = 12500; // This would come from your caregivers count query
     
     // Get most recently added dataset
-    const recentDataset = data?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+   const recentDataset = data
+  ?.slice() // avoid mutating original array
+  .sort((a: any, b: any) => {
+    const dateA = new Date(a.created_at).getTime();
+    const dateB = new Date(b.created_at).getTime();
+    return dateB - dateA; // newest first
+  })[0];
+
     
     // Mock user's accessed datasets - replace with actual query
     const userAccessedDatasets = data?.filter(dataset => dataset.user_has_access) || [];
@@ -106,7 +113,7 @@ export default async function Example() {
                         </div>
                         {userAccessedDatasets.length > 0 ? (
                             <div className="space-y-3">
-                              {userAccessedDatasets.slice(0, 3).map((dataset, index) => (
+                              {userAccessedDatasets.slice(0, 3).map((dataset) => (
                                   <div key={dataset.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
                                     <div className="flex-1 min-w-0">
                                       <p className="text-sm font-medium text-gray-900 truncate">
