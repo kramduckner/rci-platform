@@ -17,6 +17,7 @@ export default function AuthGateWithModal() {
     })
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      console.log(session.user);
       setSession(session)
     })
 

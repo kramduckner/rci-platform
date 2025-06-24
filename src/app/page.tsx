@@ -1,37 +1,27 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-//import Card from "./Card";
-// import LoginAndLibrary from "./LoginAndLibrary";
+import LoginAndLibrary from "./LoginAndLibrary";
 import { supabase } from "./supabaseClient";
-
-// export const mockData = [
-//     {
-//         id: 1,
-//         name: "Justin",
-//         content: "hello",
-//     },
-//     { id: 2, name: "Mark", content: "hello" },
-// ];
+import { useAuth } from './auth-context'
 
 export default async function Example() {
     const { data } = await supabase.from("datasets").select("*");
-    // Calculate stats
-    const accessibleDatasetsCount = data?.length || 0;
-    const totalDatasets = 47; // This would come from your total datasets query
-    const totalCaregivers = 12500; // This would come from your caregivers count query
-    
-    // Get most recently added dataset
-   const recentDataset = data
-  ?.slice() // avoid mutating original array
-  .sort((a: any, b: any) => {
-    const dateA = new Date(a.created_at).getTime();
-    const dateB = new Date(b.created_at).getTime();
-    return dateB - dateA; // newest first
-  })[0];
 
-    
-    // Mock user's accessed datasets - replace with actual query
+    const accessibleDatasetsCount = data?.length || 0;
+    const totalDatasets = 47;
+    const totalCaregivers = 12500; 
+        
+    const recentDataset = data
+    ?.slice() 
+     .sort((a: any, b: any) => {
+         const dateA = new Date(a.created_at).getTime();
+         const dateB = new Date(b.created_at).getTime();
+         return dateB - dateA; // newest first
+     })[0];
+
+        
     const userAccessedDatasets = data?.filter(dataset => dataset.user_has_access) || [];
+    const { user, signOut } = useAuth()
     
     return (
         <>
