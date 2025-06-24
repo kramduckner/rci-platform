@@ -18,25 +18,15 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from 'next/navigation';
 
-const navigation = [
-    { name: "Home", href: "#", icon: HomeIcon, current: true },
-    { name: "Catalog", href: "#", icon: UsersIcon, current: false },
-    { name: "Requests", href: "#", icon: FolderIcon, current: false },
-    // { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-    // {
-    //     name: "Documents",
-    //     href: "#",
-    //     icon: DocumentDuplicateIcon,
-    //     current: false,
-    // },
-    // { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
-];
+
 const teams = [
     { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
     { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
     { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
+
 // const userNavigation = [
 //     { name: "Your profile", href: "#" },
 //     { name: "Sign out", href: "#" },
@@ -47,6 +37,23 @@ function classNames(...classes: string[]) {
 }
 
 export default function Sidebar() {
+
+  
+const navigationItems = [
+    { name: "Home", href: "/", icon: HomeIcon, current: true },
+    { name: "About", href: "/about", icon: UsersIcon, current: false },
+    { name: "Catalog", href: "/catalog", icon: UsersIcon, current: false },
+    { name: "My Requests", href: "/requests", icon: FolderIcon, current: false },
+];
+
+  const pathname = usePathname();
+
+  const navigation = navigationItems.map((item) => ({
+    ...item,
+    current: pathname === item.href,
+  }));
+
+
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
@@ -96,7 +103,7 @@ export default function Sidebar() {
                             role="list"
                             className="-mx-2 space-y-1"
                           >
-                            {navigation.map((item) => (
+                            {navigationItems.map((item) => (
                                 <li key={item.name}>
                                   <a
                                     href={item.href}
@@ -182,15 +189,15 @@ export default function Sidebar() {
             <div className="hidden lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
               {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-                <div className="flex h-16 shrink-0 items-center">
-                  <Image
-                    height="100"
-                    width="100"
-                    alt="Your Company"
-                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                    className="h-8 w-auto"
-                  />
-                </div>
+                {/* <div className="flex h-16 shrink-0 items-center"> */}
+                {/*   <Image */}
+                {/*     height="100" */}
+                {/*     width="100" */}
+                {/*     alt="Your Company" */}
+                {/*     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" */}
+                {/*     className="h-8 w-auto" */}
+                {/*   /> */}
+                {/* </div> */}
                 <nav className="flex flex-1 flex-col">
                   <ul
                     role="list"
