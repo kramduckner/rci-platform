@@ -12,6 +12,9 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
+  BookOpenIcon,      // For "Catalog"
+  ChartBarIcon,       // For "My Dashboard"
+  ClipboardDocumentListIcon, // For "My Requests"
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';
@@ -29,14 +32,12 @@ function classNames(...classes: string[]) {
 
 export default function Sidebar() {
 
-  
-  const navigationItems = [
-    { name: "Home", href: "/", icon: HomeIcon, current: true },
-    { name: "Catalog", href: "/catalog", icon: UsersIcon, current: false },
-    { name: "My Dashboard", href: "/myDashboard", icon: UsersIcon, current: false },
-    { name: "My Requests", href: "/requests", icon: FolderIcon, current: false },
-    
-  ];
+const navigationItems = [
+  { name: "Home", href: "/", icon: HomeIcon, current: true },
+  { name: "Catalog", href: "/catalog", icon: BookOpenIcon, current: false },
+  { name: "My Dashboard", href: "/myDashboard", icon: ChartBarIcon, current: false },
+  { name: "My Requests", href: "/requests", icon: ClipboardDocumentListIcon, current: false },
+];
 
   const pathname = usePathname();
 

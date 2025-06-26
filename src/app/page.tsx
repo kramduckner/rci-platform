@@ -123,17 +123,20 @@ export default function AboutPage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        <a href="/catalog">
                         Explore Datasets
+                        </a>
                       </button>
                       <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                        Request Access
+                        <a href="/signup">
+                          Sign Up Get Access
+                        </a>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Navigation Tabs */}
               <div className="bg-white shadow-sm sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <nav className="flex space-x-8">
