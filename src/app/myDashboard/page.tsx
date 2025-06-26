@@ -8,7 +8,7 @@ export default async function Page() {
     const { data }:any = await supabase.from("datasets").select("*");
 
     const recentDataset = data?.toSorted((a:any, b:any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
-    
+  
     const userAccessedDatasets = data?.filter((d:any) => d.user_has_access) || [];
 
     return (
@@ -22,7 +22,7 @@ export default async function Page() {
               <StatsCards
                 accessibleCount={userAccessedDatasets.length}
                 totalDatasets={data.length}
-                recentDataset={null}
+                recentDataset={recentDataset}
                 accessibleDatasetsCount={1}
                 userAccessedDatasets={[]}
               />
