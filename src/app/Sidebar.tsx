@@ -33,9 +33,8 @@ export default function Sidebar() {
   const navigationItems = [
     { name: "Home", href: "/", icon: HomeIcon, current: true },
     { name: "Catalog", href: "/catalog", icon: UsersIcon, current: false },
-        { name: "My Dashboard", href: "/myDashboard", icon: UsersIcon, current: false },
+    { name: "My Dashboard", href: "/myDashboard", icon: UsersIcon, current: false },
     { name: "My Requests", href: "/requests", icon: FolderIcon, current: false },
-    { name: "About", href: "/about", icon: UsersIcon, current: false },
     
   ];
 
