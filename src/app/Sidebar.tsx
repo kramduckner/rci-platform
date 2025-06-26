@@ -1,50 +1,41 @@
 "use client";
 
 import {
-    Dialog,
-    DialogBackdrop,
-    DialogPanel,
-    TransitionChild
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  TransitionChild
 } from "@headlessui/react";
 import {
-    //CalendarIcon,
-    //ChartPieIcon,
-    Cog6ToothIcon,
-    //DocumentDuplicateIcon,
-    FolderIcon,
-    HomeIcon,
-    UsersIcon,
-    XMarkIcon,
+  Cog6ToothIcon,
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-//import Image from "next/image";
 import { usePathname } from 'next/navigation';
 
 
 const teams = [
-    { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-    { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-    { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
+  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
+  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
 
-// const userNavigation = [
-//     { name: "Your profile", href: "#" },
-//     { name: "Sign out", href: "#" },
-// ];
-
 function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Sidebar() {
 
   
-const navigationItems = [
+  const navigationItems = [
     { name: "Home", href: "/", icon: HomeIcon, current: true },
     { name: "Catalog", href: "/catalog", icon: UsersIcon, current: false },
     { name: "My Requests", href: "/requests", icon: FolderIcon, current: false },
-  { name: "About", href: "/about", icon: UsersIcon, current: false },
-];
+    { name: "About", href: "/about", icon: UsersIcon, current: false },
+  ];
 
   const pathname = usePathname();
 
@@ -54,11 +45,11 @@ const navigationItems = [
   }));
 
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    return (
-        <>
-          <div>
+  return (
+    <>
+          <div className="sm:px-6">
             <Dialog
               open={sidebarOpen}
               onClose={setSidebarOpen}
@@ -104,28 +95,28 @@ const navigationItems = [
                             className="-mx-2 space-y-1"
                           >
                             {navigationItems.map((item) => (
-                                <li key={item.name}>
-                                  <a
-                                    href={item.href}
+                              <li key={item.name}>
+                                <a
+                                  href={item.href}
+                                  className={classNames(
+                                    item.current
+                                      ? "bg-gray-50 text-sky-600"
+                                      : "text-gray-700 hover:bg-gray-50 hover:text-sky-600",
+                                    "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                  )}
+                                >
+                                  <item.icon
+                                    aria-hidden="true"
                                     className={classNames(
-                                        item.current
-                                            ? "bg-gray-50 text-indigo-600"
-                                            : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
-                                        "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                      item.current
+                                        ? "text-sky-600"
+                                        : "text-gray-400 group-hover:text-sky-600",
+                                      "size-6 shrink-0"
                                     )}
-                                  >
-                                    <item.icon
-                                      aria-hidden="true"
-                                      className={classNames(
-                                          item.current
-                                              ? "text-indigo-600"
-                                              : "text-gray-400 group-hover:text-indigo-600",
-                                          "size-6 shrink-0"
-                                      )}
-                                    />
-                                    {item.name}
-                                  </a>
-                                </li>
+                                  />
+                                  {item.name}
+                                </a>
+                              </li>
                             ))}
                           </ul>
                         </li>
@@ -138,42 +129,42 @@ const navigationItems = [
                             className="-mx-2 mt-2 space-y-1"
                           >
                             {teams.map((team) => (
-                                <li key={team.name}>
-                                  <a
-                                    href={team.href}
+                              <li key={team.name}>
+                                <a
+                                  href={team.href}
+                                  className={classNames(
+                                    team.current
+                                      ? "bg-gray-50 text-sky-600"
+                                      : "text-gray-700 hover:bg-gray-50 hover:text-sky-600",
+                                    "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                  )}
+                                >
+                                  <span
                                     className={classNames(
-                                        team.current
-                                            ? "bg-gray-50 text-indigo-600"
-                                            : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
-                                        "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                      team.current
+                                        ? "border-sky-600 text-sky-600"
+                                        : "border-gray-200 text-gray-400 group-hover:border-sky-600 group-hover:text-sky-600",
+                                      "flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
                                     )}
                                   >
-                                    <span
-                                      className={classNames(
-                                          team.current
-                                              ? "border-indigo-600 text-indigo-600"
-                                              : "border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600",
-                                          "flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium"
-                                      )}
-                                    >
-                                      {team.initial}
-                                    </span>
-                                    <span className="truncate">
-                                      {team.name}
-                                    </span>
-                                  </a>
-                                </li>
+                                    {team.initial}
+                                  </span>
+                                  <span className="truncate">
+                                    {team.name}
+                                  </span>
+                                </a>
+                              </li>
                             ))}
                           </ul>
                         </li>
                         <li className="mt-auto">
                           <a
                             href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-sky-600"
                           >
                             <Cog6ToothIcon
                               aria-hidden="true"
-                              className="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                              className="size-6 shrink-0 text-gray-400 group-hover:text-sky-600"
                             />
                             Settings
                           </a>
@@ -184,20 +175,8 @@ const navigationItems = [
                 </DialogPanel>
               </div>
             </Dialog>
-
-            {/* Static sidebar for desktop */}
             <div className="hidden lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-              {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
-                {/* <div className="flex h-16 shrink-0 items-center"> */}
-                {/*   <Image */}
-                {/*     height="100" */}
-                {/*     width="100" */}
-                {/*     alt="Your Company" */}
-                {/*     src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" */}
-                {/*     className="h-8 w-auto" */}
-                {/*   /> */}
-                {/* </div> */}
                 <nav className="flex flex-1 flex-col">
                   <ul
                     role="list"
@@ -206,39 +185,40 @@ const navigationItems = [
                     <li>
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
-                            <li key={item.name}>
-                              <a
-                                href={item.href}
+                          <li key={item.name}>
+                            <a
+                              href={item.href}
+                              className={classNames(
+                                item.current
+                                  ? "bg-gray-50 text-sky-600"
+                                  : "text-gray-700 hover:bg-gray-50 hover:text-sky-600",
+                                "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                              )}
+                            >
+                              <item.icon
+                                aria-hidden="true"
                                 className={classNames(
-                                    item.current
-                                        ? "bg-gray-50 text-indigo-600"
-                                        : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
-                                    "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                  item.current
+                                    ? "text-sky-600"
+                                    : "text-gray-400 group-hover:text-sky-600",
+                                  "size-6 shrink-0"
                                 )}
-                              >
-                                <item.icon
-                                  aria-hidden="true"
-                                  className={classNames(
-                                      item.current
-                                          ? "text-indigo-600"
-                                          : "text-gray-400 group-hover:text-indigo-600",
-                                      "size-6 shrink-0"
-                                  )}
-                                />
-                                {item.name}
-                              </a>
-                            </li>
+                              />
+                              {item.name}
+                            </a>
+                          </li>
                         ))}
                       </ul>
                     </li>
+                    <hr className="my-2 border-t border-gray-200" />
                     <li className="mt-auto">
                       <a
                         href="#"
-                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-sky-600"
                       >
                         <Cog6ToothIcon
                           aria-hidden="true"
-                          className="size-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                          className="size-6 shrink-0 text-gray-400 group-hover:text-sky-600"
                         />
                         My Account
                       </a>
@@ -247,15 +227,8 @@ const navigationItems = [
                 </nav>
               </div>
             </div>
-
-            <div className="lg:pl-72">
-              <main className="py-10">
-                <div className="px-4 sm:px-6 lg:px-8">
-                  {/* Your content */}
-                </div>
-              </main>
-            </div>
           </div>
-        </>
-    );
+      
+    </>
+  );
 }

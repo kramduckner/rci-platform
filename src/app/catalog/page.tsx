@@ -4,11 +4,9 @@ import Card from "../Card";
 import { supabase } from "../supabaseClient";
 import LoginAndLibrary from "../LoginAndLibrary"
 
-
 export default async function Example() {
   const { data }:any = await supabase.from("datasets").select("");
   
-  // Group datasets by category for better organization
   const datasetsByCategory = data?.reduce((acc:any, dataset:any) => {
     const category = dataset.category || 'Other';
     if (!acc[category]) acc[category] = [];
@@ -22,7 +20,6 @@ export default async function Example() {
   
   return (
     <>
-      <LoginAndLibrary />
       <Header />
       <div className="py-10">
         <main>
@@ -105,34 +102,34 @@ export default async function Example() {
               )}
 
               {/* How to Get Started Section */}
-              <div className="mb-12">
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Get Started</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-white font-bold">1</span>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Explore Datasets</h3>
-                      <p className="text-gray-600">Browse our catalog to find datasets relevant to your research</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-white font-bold">2</span>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">View Reports</h3>
-                      <p className="text-gray-600">Click on datasets to view interactive Looker Studio reports</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <span className="text-white font-bold">3</span>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Request Access</h3>
-                      <p className="text-gray-600">Submit access requests for datasets you need</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* <div className="mb-12"> */}
+              {/*   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-8"> */}
+              {/*     <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Get Started</h2> */}
+              {/*     <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> */}
+              {/*       <div className="text-center"> */}
+              {/*         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"> */}
+              {/*           <span className="text-white font-bold">1</span> */}
+              {/*         </div> */}
+              {/*         <h3 className="font-semibold text-gray-900 mb-2">Explore Datasets</h3> */}
+              {/*         <p className="text-gray-600">Browse our catalog to find datasets relevant to your research</p> */}
+              {/*       </div> */}
+              {/*       <div className="text-center"> */}
+              {/*         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"> */}
+              {/*           <span className="text-white font-bold">2</span> */}
+              {/*         </div> */}
+              {/*         <h3 className="font-semibold text-gray-900 mb-2">View Reports</h3> */}
+              {/*         <p className="text-gray-600">Click on datasets to view interactive Looker Studio reports</p> */}
+              {/*       </div> */}
+              {/*       <div className="text-center"> */}
+              {/*         <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"> */}
+              {/*           <span className="text-white font-bold">3</span> */}
+              {/*         </div> */}
+              {/*         <h3 className="font-semibold text-gray-900 mb-2">Request Access</h3> */}
+              {/*         <p className="text-gray-600">Submit access requests for datasets you need</p> */}
+              {/*       </div> */}
+              {/*     </div> */}
+              {/*   </div> */}
+              {/* </div> */}
 
               {/* All Datasets Section */}
               <div className="mb-8">

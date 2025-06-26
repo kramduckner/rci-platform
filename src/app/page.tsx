@@ -15,7 +15,7 @@ export default async function Page() {
     return (
         <>
           <Header />
-          <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex">
+          <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex py-10">
             <Sidebar />
             <div className="flex-1">
               <h1 className="text-3xl font-bold mb-6 text-gray-900">RCI Data Discovery Dashboard</h1>
@@ -24,7 +24,6 @@ export default async function Page() {
                 accessibleCount={userAccessedDatasets.length}
                 totalDatasets={data.length}
                 recentDataset={null}
-                totalCaregivers={12500}
                 accessibleDatasetsCount={1}
                 userAccessedDatasets={[]}
               />
