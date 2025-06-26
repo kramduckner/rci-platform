@@ -33,8 +33,10 @@ export default function Sidebar() {
   const navigationItems = [
     { name: "Home", href: "/", icon: HomeIcon, current: true },
     { name: "Catalog", href: "/catalog", icon: UsersIcon, current: false },
+        { name: "My Dashboard", href: "/myDashboard", icon: UsersIcon, current: false },
     { name: "My Requests", href: "/requests", icon: FolderIcon, current: false },
     { name: "About", href: "/about", icon: UsersIcon, current: false },
+    
   ];
 
   const pathname = usePathname();
@@ -213,7 +215,7 @@ export default function Sidebar() {
                     <hr className="my-2 border-t border-gray-200" />
                     <li className="mt-auto">
                       <a
-                        href="#"
+                        href="/myAccount"
                         className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-700 hover:bg-gray-50 hover:text-sky-600"
                       >
                         <Cog6ToothIcon
