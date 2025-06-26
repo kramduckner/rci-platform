@@ -7,18 +7,19 @@ import Link from 'next/link'
 
 export default function AuthForm({ mode = 'login' }) {
   const [email, setEmail] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
 
-  const handleAuth = async (e) => {
+  const handleAuth = async (e:any) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
     
     try {
-      let result
+      let result: any
+      
       if (mode === 'signup') {
         result = await supabase.auth.signUp({ email, password })
       } else {
