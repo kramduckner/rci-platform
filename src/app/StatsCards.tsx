@@ -43,16 +43,16 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
             </div>
           </div>
         </div>
-        <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+        <div className="bg-emerald-50 rounded-lg p-4 border border-gray-200">
           <a 
             href="/catalog" 
-            className="flex items-center justify-between hover:bg-gray-100 transition-colors rounded-md p-1 -m-1 h-full"
+            className="flex items-center justify-between hover:bg-emerald-100 transition-colors rounded-md p-1 -m-1 h-full"
           >
             <div>
-              <p className="text-sm font-medium text-gray-800">
+              <p className="text-sm font-medium text-emerald-800">
                 Explore Catalog
               </p>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs text-emerald-600">
                 Browse datasets
               </p>
             </div>

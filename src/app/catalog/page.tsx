@@ -38,17 +38,17 @@ export default async function Example() {
                 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-blue-50 rounded-lg p-6">
-                    <div className="text-3xl font-bold text-blue-600">{totalDatasets}</div>
-                    <div className="text-blue-800 font-medium">Total Datasets</div>
+                  <div className="bg-sky-50 rounded-lg p-6">
+                    <div className="text-3xl font-bold text-sky-600">{totalDatasets}</div>
+                    <div className="text-sky-800 font-medium">Total Datasets</div>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-6">
-                    <div className="text-3xl font-bold text-green-600">{categories.length}</div>
-                    <div className="text-green-800 font-medium">Data Categories</div>
+                  <div className="bg-red-50 rounded-lg p-6">
+                    <div className="text-3xl font-bold text-red-600">{categories.length}</div>
+                    <div className="text-red-800 font-medium">Data Categories</div>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-6">
-                    <div className="text-3xl font-bold text-purple-600">{featuredDatasets.length}</div>
-                    <div className="text-purple-800 font-medium">Featured Datasets</div>
+                  <div className="bg-emerald-50 rounded-lg p-6">
+                    <div className="text-3xl font-bold text-emerald-600">{featuredDatasets.length}</div>
+                    <div className="text-emerald-800 font-medium">Featured Datasets</div>
                   </div>
                 </div>
               </div>
