@@ -2,7 +2,7 @@
 
 import { useAuth } from './auth-context';
 
-export default function WelcomeSection({ recentDataset, userAccessedDatasets }) {
+export default function WelcomeSection({ recentDataset, userAccessedDatasets }:any) {
   const { user } = useAuth();
 
   return (

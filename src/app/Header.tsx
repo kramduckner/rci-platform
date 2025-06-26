@@ -1,3 +1,7 @@
+"use client"
+
+import { useAuth } from './auth-context';
+
 import {
     Disclosure,
     DisclosureButton,
@@ -7,32 +11,24 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/react";
-//import { supabase } from "./supabaseClient"; 
+
 import Image from "next/image";
-// import Sidebar from "./Sidebar";
+
 //import { usePathname } from 'next/navigation';
 
-const user = {
-    name: "Tom Cook",
-    email: "tom@example.com",
-    imageUrl: "/avatar.svg"
 
-};
-const navigation = [
-    { name: "Home", href: "/", current: true },
-    { name: "About", href: "/about", current: false },
-    { name: "Catalog", href: "/catalog", current: false },
-    { name: "My Requests", href: "/requests", current: false },
+
+const navigation: any = [
+    // { name: "Home", href: "/", current: true },
+    // { name: "About", href: "/about", current: false },
+    // { name: "Catalog", href: "/catalog", current: false },
+    // { name: "My Requests", href: "/requests", current: false },
 ];
 
-// const handleSignOut = async () => {
-//     alert('sup')
-//     await supabase.auth.signOut();
-//     window.location.reload(); 
-// };
 
 const userNavigation = [
-    { name: "My Account", href: "#" },
+    { name: "My Account", href: "/myAccount" },
+    { name: "Log Out", href: "/logOut" },
     
 ];
 
@@ -42,6 +38,16 @@ function classNames(...classes: string[]) {
 
 
 export default function Example() {
+
+    const { user, signOut } = useAuth();
+    
+    const handleSignOut = async () => {
+        alert('sup')
+        signOut()
+        window.location.reload(); 
+    };
+
+    
     return (
         <div className="min-h-full">
           <Disclosure as="nav" className="border-b border-gray-200 bg-white">
@@ -49,7 +55,6 @@ export default function Example() {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex shrink-0 items-center">
-                    
                     <img
                       src="/rci-logo.svg"
                       alt="Your Company"
@@ -57,7 +62,7 @@ export default function Example() {
                     />
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                    {navigation.map((item) => (
+                    {navigation.map((item : any) => (
                         <a
                           key={item.name}
                           href={item.href}
@@ -99,7 +104,7 @@ export default function Example() {
                           width="100"
                           height="100"
                           alt=""
-                          src={user.imageUrl}
+                          src={"/avatar.svg"}
                           className="size-8 rounded-full"
                         />
                       </MenuButton>
@@ -135,7 +140,7 @@ export default function Example() {
 
             <DisclosurePanel className="sm:hidden">
               <div className="space-y-1 pt-2 pb-3">
-                {navigation.map((item) => (
+                {navigation.map((item: any) => (
                     <DisclosureButton
                       key={item.name}
                       as="a"
@@ -157,16 +162,14 @@ export default function Example() {
                   <div className="shrink-0">
                     <Image
                       alt=""
-                      src={user.imageUrl}
+                      src={"/avatar.svg"}
                       className="size-10 rounded-full"
                     />
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">
-                      {user.name}
-                    </div>
+                    
                     <div className="text-sm font-medium text-gray-500">
-                      {user.email}
+                      {user?.email}
                     </div>
                   </div>
                   <button
@@ -180,7 +183,7 @@ export default function Example() {
                   </button>
                 </div>
                 <div className="mt-3 space-y-1">
-                  {userNavigation.map((item) => (
+                  {userNavigation.map((item: any) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"

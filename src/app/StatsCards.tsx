@@ -1,4 +1,4 @@
-export default function StatsCards({ accessibleCount, totalDatasets, totalCaregivers, recentDataset, userAccessedDatasets = [ ], accessibleDatasetsCount }) {
+export default function StatsCards({ accessibleCount, totalDatasets, totalCaregivers, recentDataset, userAccessedDatasets = [ ], accessibleDatasetsCount }:any) {
   return (
     <>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
@@ -46,7 +46,7 @@ export default function StatsCards({ accessibleCount, totalDatasets, totalCaregi
             Your Accessed Datasets
           </h3>
           <a 
-            href="/my-datasets" 
+            href="/catalog" 
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
           >
             View All
@@ -54,7 +54,7 @@ export default function StatsCards({ accessibleCount, totalDatasets, totalCaregi
         </div>
         {userAccessedDatasets.length > 0 ? (
           <div className="space-y-3">
-            {userAccessedDatasets.slice(0, 3).map((dataset) => (
+            {userAccessedDatasets.slice(0, 3).map((dataset:any) => (
               <div key={dataset.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">
@@ -208,7 +208,7 @@ export default function StatsCards({ accessibleCount, totalDatasets, totalCaregi
       
       <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
         <a 
-          href="/data-catalog" 
+          href="/catalog" 
           className="flex items-center justify-between hover:bg-gray-100 transition-colors rounded-md p-1 -m-1 h-full"
         >
           <div>

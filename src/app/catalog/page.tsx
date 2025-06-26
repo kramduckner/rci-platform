@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar";
 import Header from "../Header";
 import Card from "../Card";
 import { supabase } from "../supabaseClient";
+import LoginAndLibrary from "../LoginAndLibrary"
 
 
 export default async function Example() {
@@ -21,7 +22,7 @@ export default async function Example() {
   
   return (
     <>
-      {/* <LoginAndLibrary /> */}
+      <LoginAndLibrary />
       <Header />
       <div className="py-10">
         <main>
@@ -70,7 +71,7 @@ export default async function Example() {
                     <select className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                       <option value="">All Categories</option>
                       {categories.map((category:any) => (
-                        <option key={category} value={category}>{category}</option>
+                      <option key={category} value={category}>{category}</option>
                       ))}
                     </select>
                     <button className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
@@ -86,18 +87,18 @@ export default async function Example() {
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Datasets</h2>
                   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                     {featuredDatasets.map((dataset:any) => (
-                      <div key={`featured-${dataset.id}`} className="relative">
-                        <div className="absolute top-2 right-2 z-10">
-                          <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                            Featured
-                          </span>
-                        </div>
-                        <Card
-                          key={dataset.id}
-                          id={dataset.id}
-                          data={dataset}
-                        />
+                    <div key={`featured-${dataset.id}`} className="relative">
+                      <div className="absolute top-2 right-2 z-10">
+                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                          Featured
+                        </span>
                       </div>
+                      <Card
+                        key={dataset.id}
+                        id={dataset.id}
+                        data={dataset}
+                      />
+                    </div>
                     ))}
                   </div>
                 </div>
@@ -152,11 +153,11 @@ export default async function Example() {
                 {/* Datasets Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {data?.map((dataset:any) => (
-                    <Card
-                      key={dataset.id}
-                      id={dataset.id}
-                      data={dataset}
-                    />
+                  <Card
+                    key={dataset.id}
+                    id={dataset.id}
+                    data={dataset}
+                  />
                   ))}
                 </div>
 
