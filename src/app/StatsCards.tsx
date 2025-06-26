@@ -1,8 +1,6 @@
 export default function StatsCards({ accessibleCount, totalDatasets,  recentDataset, userAccessedDatasets = [ ], accessibleDatasetsCount }:any) {
-  console.log(recentDataset);
   return (
     <>
-            {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
         <div className="bg-sky-50 rounded-lg p-4 border border-sky-200">
           <div className="flex items-center">
@@ -160,8 +158,8 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
           )}
         </div>
       </div>
-      
-      <div className="bg-white shadow-sm rounded-lg p-6 mb-8 border border-gray-200">
+      <hr className="my-2 border-t border-gray-200" />
+      <div className="bg-white shadow-sm rounded-lg p-6 my-8 border border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a 
