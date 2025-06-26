@@ -23,20 +23,20 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
           </div>
         </div>
         
-        <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+        <div className="bg-red-50 rounded-lg p-4 border border-purple-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-red-400 rounded-lg flex items-center justify-center">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
               </div>
             </div>
             <div className="ml-3">
-              <p className="text-2xl font-bold text-purple-900">
+              <p className="text-2xl font-bold text-red-900">
                 {totalDatasets}
               </p>
-              <p className="text-sm font-medium text-purple-800">
+              <p className="text-sm font-medium text-red-800">
                 Total Datasets
               </p>
             </div>
