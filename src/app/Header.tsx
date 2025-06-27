@@ -1,7 +1,5 @@
 "use client"
-
 import { useAuth } from './auth-context';
-
 import {
     Disclosure,
     DisclosureButton,
@@ -11,11 +9,8 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/react";
-
+import {useState, useEffect} from "react"
 import Image from "next/image";
-
-//import { usePathname } from 'next/navigation';
-
 
 
 const navigation: any = [
@@ -25,28 +20,32 @@ const navigation: any = [
     // { name: "My Requests", href: "/requests", current: false },
 ];
 
-
-const userNavigation = [
-    { name: "My Account", href: "/myAccount" },
-    { name: "Log Out", href: "/logOut" },
-    
-];
-
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
 
-
 export default function Example() {
+
+    const [userNavigation, setUserNavigation] = useState([
+        { name: "Login", href: "/login" },
+        { name: "Sign Up", href: "/signup" },
+    ])
 
     const { user, signOut } = useAuth();
     
+    useEffect(()=>{
+        if (user){
+            setUserNavigation([
+                { name: "My Account", href: "/myAccount" },
+                { name: "Log Out", href: "/logout" },
+            ])
+        }
+    }, [user])
+    
     const handleSignOut = async () => {
-        alert('sup')
         signOut()
         window.location.reload(); 
     };
-
     
     return (
         <div className="min-h-full">
@@ -63,21 +62,21 @@ export default function Example() {
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     {navigation.map((item : any) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          aria-current={
-                              item.current ? "page" : undefined
-                          }
-                          className={classNames(
-                              item.current
-                                  ? "border-indigo-500 text-gray-900"
-                                  : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
-                              "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
-                          )}
-                        >
-                          {item.name}
-                        </a>
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      aria-current={
+                          item.current ? "page" : undefined
+                      }
+                      className={classNames(
+                          item.current
+                              ? "border-indigo-500 text-gray-900"
+                              : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                          "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium"
+                      )}
+                    >
+                      {item.name}
+                    </a>
                     ))}
                   </div>
                 </div>
@@ -114,16 +113,16 @@ export default function Example() {
                       className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                     >
                       {userNavigation.map((item:any) => (
-                          <MenuItem key={item.name}>
-                            {item.action ?( 
-                                <a
-                                  href={item.href}
-                                  className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
-                                >
-                                  {item.name}
-                                </a>) : <button  className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{item.name}</button>
-                            }
-                          </MenuItem>
+                      <MenuItem key={item.name}>
+                        {item.action || true ?( 
+                            <a
+                              href={item.href}
+                              className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
+                            >
+                              {item.name}
+                            </a>) : <button  className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden">{item.name}</button>
+                        }
+                      </MenuItem>
                       ))}
                     </MenuItems>
                   </Menu>
@@ -141,20 +140,20 @@ export default function Example() {
             <DisclosurePanel className="sm:hidden">
               <div className="space-y-1 pt-2 pb-3">
                 {navigation.map((item: any) => (
-                    <DisclosureButton
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      aria-current={item.current ? "page" : undefined}
-                      className={classNames(
-                          item.current
-                              ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                              : "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800",
-                          "block border-l-4 py-2 pr-4 pl-3 text-base font-medium"
-                      )}
-                    >
-                      {item.name}
-                    </DisclosureButton>
+                <DisclosureButton
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  aria-current={item.current ? "page" : undefined}
+                  className={classNames(
+                      item.current
+                          ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                          : "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800",
+                      "block border-l-4 py-2 pr-4 pl-3 text-base font-medium"
+                  )}
+                >
+                  {item.name}
+                </DisclosureButton>
                 ))}
               </div>
               <div className="border-t border-gray-200 pt-4 pb-3">
@@ -184,14 +183,14 @@ export default function Example() {
                 </div>
                 <div className="mt-3 space-y-1">
                   {userNavigation.map((item: any) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                      >
-                        {item.name}
-                      </DisclosureButton>
+                  <DisclosureButton
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                  >
+                    {item.name}
+                  </DisclosureButton>
                   ))}
                 </div>
               </div>

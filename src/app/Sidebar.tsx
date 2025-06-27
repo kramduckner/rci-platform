@@ -12,9 +12,9 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
-  BookOpenIcon,      // For "Catalog"
-  ChartBarIcon,       // For "My Dashboard"
-  ClipboardDocumentListIcon, // For "My Requests"
+  BookOpenIcon,
+  ChartBarIcon,     
+  ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { usePathname } from 'next/navigation';

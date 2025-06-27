@@ -4,6 +4,7 @@
 import { useState } from 'react'
 import { supabase } from './supabaseClient'
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
 
 export default function AuthForm({ mode = 'login' }) {
   const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ export default function AuthForm({ mode = 'login' }) {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const router = useRouter();
 
   const handleAuth = async (e:any) => {
     e.preventDefault()
@@ -24,14 +26,17 @@ export default function AuthForm({ mode = 'login' }) {
         result = await supabase.auth.signUp({ email, password })
       } else {
         result = await supabase.auth.signInWithPassword({ email, password })
+        
       }
       
       if (result.error) {
         setError(result.error.message)
       } else if (mode === 'signup') {
         setSuccess(true)
+      } else {
+        router.push("/");
       }
-      // For login, the auth state change will handle redirect
+      
     } catch (err) {
       setError('An unexpected error occurred')
     } finally {
