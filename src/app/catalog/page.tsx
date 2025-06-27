@@ -77,8 +77,7 @@ export default async function Example() {
                   </div>
                 </div>
               </div>
-
-              {/* Featured Datasets Section */}
+              
               {featuredDatasets.length > 0 && (
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Featured Datasets</h2>

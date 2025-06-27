@@ -5,13 +5,11 @@ import LoginAndLibrary from "../LoginAndLibrary"
 import MyRequestClient from "./MyRequestsClient"
 
 const DataRequestsPanel = () => {
-  
-  const requests:any = [];
 
   return (
     <>
       <Header />
-      <MyRequestClient requests={requests}/>
+      <MyRequestClient />
     </>
   );
 };
