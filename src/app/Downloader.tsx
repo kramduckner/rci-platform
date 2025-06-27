@@ -5,8 +5,8 @@ import { supabase } from "./supabaseClient"; // adjust path as needed
 
 interface DownloadFileButtonProps {
   bucket: string;
-  filePath: string; // path within the bucket (e.g., "user_uploads/data.csv")
-  label?: string;   // optional label for the button
+  filePath: string; 
+  label?: string;   
 }
 
 export default function DownloadFileButton({ bucket, filePath, label = "Download File" }: DownloadFileButtonProps) {
@@ -20,6 +20,7 @@ export default function DownloadFileButton({ bucket, filePath, label = "Download
     const { data, error } = await supabase.storage.from(bucket).download(filePath);
 
     if (error) {
+      console.log(error);
       setError("You don't have permission or the file doesn't exist.");
       setLoading(false);
       return;
@@ -41,7 +42,7 @@ export default function DownloadFileButton({ bucket, filePath, label = "Download
       <button
         onClick={handleDownload}
         disabled={loading}
-        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+        className="px-4 py-2 bg-sky-600 text-white rounded hover:bg-sky-700 disabled:opacity-50"
       >
         {loading ? "Preparing download..." : label}
       </button>

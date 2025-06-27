@@ -7,7 +7,7 @@ export default function WelcomeSection({ recentDataset, userAccessedDatasets }:a
 
   return (
     <div className="bg-white border rounded-lg p-6 mb-8 shadow-sm">
-      <h2 className="text-2xl font-semibold mb-3 text-gray-900">Welcome, {user?.email || "Researcher"}</h2>
+      {user ? <h2 className="text-2xl font-semibold mb-3 text-gray-900">Welcome, {user?.email || "Researcher"}</h2> : null}
       <p className="text-gray-700 text-lg leading-relaxed">
         Your gateway to comprehensive caregiver research datasets. This portal provides 
         a centralized platform where researchers, clinicians, and stakeholders can 

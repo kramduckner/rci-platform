@@ -3,7 +3,7 @@ import { supabase } from "@/app/supabaseClient";
 import { Button } from "@headlessui/react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import LoginAndLibrary from "../../LoginAndLibrary"
+import Downloader from "../../Downloader"
 
 type Params = Promise<{ id: string }>;
 
@@ -19,7 +19,6 @@ export default async function CardDetail({ params }: { params: Params }) {
 
     return (
         <>
-          <LoginAndLibrary />
           <Header />
           <div className="py-10">
             <main>
@@ -28,7 +27,7 @@ export default async function CardDetail({ params }: { params: Params }) {
                   <div className="flex items-center mb-6">
                     <Link
                       href="/"
-                      className="text-blue-600 hover:text-blue-800 mr-2"
+                      className="text-sky-600 hover:text-sky-800 mr-2"
                     >
                       ← Back to Dashboard
                     </Link>
@@ -52,11 +51,15 @@ export default async function CardDetail({ params }: { params: Params }) {
                     </div>
 
                     <Button>View in Looker Studio</Button>
+                    <Downloader bucket={dataset.bucket} filePath={dataset.path}/>
                   </div>
+                  
                 </div>
               </div>
+              
             </main>
           </div>
         </>
     );
 }
+
