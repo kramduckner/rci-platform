@@ -32,8 +32,6 @@ export default function Example() {
       const matchesQuery = d.title?.toLowerCase().includes(q) || d.description?.toLowerCase().includes(q);
             return matchesQuery ;
     });
-
-    
     
     setFiltered(filteredData);
   };
