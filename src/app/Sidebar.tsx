@@ -33,10 +33,10 @@ function classNames(...classes: string[]) {
 export default function Sidebar() {
 
 const navigationItems = [
-  { name: "Home", href: "/", icon: HomeIcon, current: true },
-  { name: "Catalog", href: "/catalog", icon: BookOpenIcon, current: false },
-  { name: "My Dashboard", href: "/myDashboard", icon: ChartBarIcon, current: false },
-  { name: "My Requests", href: "/requests", icon: ClipboardDocumentListIcon, current: false },
+  { name: "Home", href: "/dashboard", icon: HomeIcon, current: true },
+  { name: "Catalog", href: "/dashboard/catalog", icon: BookOpenIcon, current: false },
+  { name: "My Requests", href: "/dashboard/requests", icon: ClipboardDocumentListIcon, current: false },
+  { name: "About", href: "/", icon: ClipboardDocumentListIcon, current: false },
 ];
 
   const pathname = usePathname();

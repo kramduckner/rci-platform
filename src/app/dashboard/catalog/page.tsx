@@ -1,8 +1,8 @@
-import Sidebar from "../Sidebar";
-import Header from "../Header";
-import Card from "../Card";
-import { supabase } from "../supabaseClient";
-import LoginAndLibrary from "../LoginAndLibrary"
+import Sidebar from "../../Sidebar";
+import Header from "../../Header";
+import Card from "../../Card";
+import { supabase } from "../../supabaseClient";
+import LoginAndLibrary from "../../LoginAndLibrary"
 
 export default async function Example() {
   const { data }:any = await supabase.from("datasets").select("");

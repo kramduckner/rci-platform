@@ -1,10 +1,9 @@
 "use client";
 
-import Sidebar from "../Sidebar";
-import Header from "../Header";
-import LoginAndLibrary from "../LoginAndLibrary";
-import { useAuth } from "../auth-context";
-import { supabase } from "../supabaseClient";
+import Sidebar from "../../Sidebar";
+import Header from "../../Header";
+import { useAuth } from "../../auth-context";
+import { supabase } from "../../supabaseClient";
 import { useEffect, useState } from "react";
 
 const DataRequestsPanel = () => {

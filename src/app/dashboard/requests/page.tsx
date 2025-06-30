@@ -1,14 +1,12 @@
 import React from "react";
-import Sidebar from "../Sidebar";
-import Header from "../Header";
-import LoginAndLibrary from "../LoginAndLibrary"
 import MyRequestClient from "./MyRequestsClient"
+import Header from "../../Header"
 
 const DataRequestsPanel = () => {
 
   return (
     <>
-      <Header />
+      <Header/>
       <MyRequestClient />
     </>
   );
