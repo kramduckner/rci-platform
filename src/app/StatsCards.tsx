@@ -6,14 +6,14 @@ import { supabase } from "./supabaseClient";
 import Link from "next/link";
 
 export default function StatsCards({ accessibleCount, totalDatasets,  recentDataset, accessibleDatasetsCount }:any) {
-  const {user} = useAuth()
-  const [lastAccessedDataset, setLastAccessedDataset] = useState({})
+  const {user}:any = useAuth()
+  const [lastAccessedDataset, setLastAccessedDataset]:any = useState({})
   const [accessedDatasetsCount, setAccessedDatasetsCount] = useState(0)
   
   useEffect(()=>{
 
     async function fetchDatasetAccess() {
-      const d = await supabase
+      const d:any = await supabase
             .from("dataset_access")
             .select("user_id, last_access, datasets(*)")
             .eq("user_id", user.id)

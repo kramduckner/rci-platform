@@ -9,7 +9,7 @@ import Downloader from "../../Downloader";
 import { useEffect, useState } from "react";
 
 export default function CardDetail({ params }: any) {
-  const { user } = useAuth();
+  const { user }:any = useAuth();
   const [dataset, setDataset] = useState<any>(null);
   const [hasAccess, setHasAccess] = useState(false);
   const [loading, setLoading] = useState(true);
