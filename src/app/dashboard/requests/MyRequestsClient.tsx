@@ -13,9 +13,9 @@ const DataRequestsPanel = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       const { data, error } = await supabase
-        .from("dataset_access_requests")
-        .select(`*, datasets(*)`)
-        .eq("user_id", user?.id);
+            .from("dataset_access_requests")
+            .select(`*, datasets(*)`)
+            .eq("user_id", user?.id);
 
       if (error) {
         console.error("Error fetching requests:", error);
@@ -45,54 +45,64 @@ const DataRequestsPanel = () => {
               <ul className="space-y-4">
                 {requests.map((req: any) => {
                   const dataset = req.datasets;
-                  return (
-                    <li
-                      key={req.id}
-                      className="border border-gray-200 rounded-lg p-4 space-y-2"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <div className="font-semibold text-gray-900 text-lg">
-                            {dataset?.title || "Untitled Dataset"}
-                          </div>
-                          <div className="text-sm text-gray-500 mt-1">
-                            Status:{" "}
-                            <span className="font-medium text-gray-800">{req.status}</span>
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            Requested on:{" "}
-                            {new Date(req.requested_at).toLocaleDateString()}
-                          </div>
-                        </div>
-                        {dataset?.path && (
-                          <img
-                            src={`https://your-supabase-project.supabase.co/storage/v1/object/public/${dataset.bucket}/${dataset.path}`}
-                            alt={dataset.title}
-                            className="w-20 h-20 object-cover rounded-md"
-                          />
-                        )}
+                return (
+                <li
+                  key={req.id}
+                  className="border border-gray-200 rounded-lg p-4 space-y-2"
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="font-semibold text-gray-900 text-lg">
+                        {dataset?.title || "Untitled Dataset"}
                       </div>
+                      <div className="text-sm text-gray-500 mt-1">
+                        Status:{" "}
+                        <span className="font-medium text-gray-800">{req.status}</span>
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        Requested on:{" "}
+                        {new Date(req.requested_at).toLocaleDateString()}
+                      </div>
+                    </div>
+                    {dataset?.path && (
+                      <img
+                        src={`https://your-supabase-project.supabase.co/storage/v1/object/public/${dataset.bucket}/${dataset.path}`}
+                        alt={dataset.title}
+                        className="w-20 h-20 object-cover rounded-md"
+                      />
+                    )}
+                  </div>
 
-                      <div className="text-sm text-gray-700 mt-2">
-                        {dataset?.description || "No description provided."}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        Publisher: <span className="text-gray-700">{dataset?.publisher}</span>
-                      </div>
+                  <div className="text-sm text-gray-700 mt-2">
+                    {dataset?.description || "No description provided."}
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div>
+                      Publisher: <span className="text-gray-700">{dataset?.publisher}</span>
+                    </div>
+                    {dataset?.id && (
+                      <a
+                        href={`/dataset/${dataset.id}`}
+                        className="text-blue-600 hover:underline font-medium"
+                      >
+                        View Dataset →
+                      </a>
+                    )}
+                  </div>
 
-                      {req.status === "completed" && req.downloadUrl && (
-                        <div className="mt-4">
-                          <a
-                            href={req.downloadUrl}
-                            className="text-sm inline-block px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                            download
-                          >
-                            Download Dataset
-                          </a>
-                        </div>
-                      )}
-                    </li>
-                  );
+                  {req.status === "completed" && req.downloadUrl && (
+                    <div className="mt-4">
+                      <a
+                        href={req.downloadUrl}
+                        className="text-sm inline-block px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                        download
+                      >
+                        Download Dataset
+                      </a>
+                    </div>
+                  )}
+                </li>
+                );
                 })}
               </ul>
             ) : (

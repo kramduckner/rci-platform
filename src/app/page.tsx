@@ -124,7 +124,7 @@ export default function AboutPage() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                         <a href="/dashboard/catalog">
-                        Explore Datasets
+                          Explore Datasets
                         </a>
                       </button>
                       <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
@@ -461,12 +461,15 @@ export default function AboutPage() {
                       <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                           <a href="/signup">
-                          Create Account
+                            Create Account
                           </a>
                         </button>
-                        <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                          Contact Us
-                        </button>
+                          <a
+                            href="mailto:info@rosalynncarter.org"
+                            className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-block"
+                          >
+                            Contact Us
+                          </a>
                       </div>
                     </div>
                   </div>
