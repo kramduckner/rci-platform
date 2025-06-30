@@ -3,12 +3,13 @@
 import {useEffect, useState} from "react"
 import { useAuth } from "./auth-context";
 import { supabase } from "./supabaseClient";
+import Link from "next/link";
 
 export default function StatsCards({ accessibleCount, totalDatasets,  recentDataset, accessibleDatasetsCount }:any) {
-
   const {user} = useAuth()
   const [lastAccessedDataset, setLastAccessedDataset] = useState({})
-
+  const [accessedDatasetsCount, setAccessedDatasetsCount] = useState(0)
+  
   useEffect(()=>{
 
     async function fetchDatasetAccess() {
@@ -17,7 +18,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
             .select("user_id, last_access, datasets(*)")
             .eq("user_id", user.id)
             .order("last_access", { ascending: false });
-      
+      setAccessedDatasetsCount(d.data.length)
       setLastAccessedDataset(d.data[0])
 
     }
@@ -42,12 +43,23 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
               </div>
             </div>
             <div className="ml-3">
-              <p className="text-2xl font-bold text-blue-900">
-                {accessibleDatasetsCount}
-              </p>
-              <p className="text-sm font-medium text-blue-800">
-                Your Datasets
-              </p>
+              {user ? (
+                <>
+                  <p className="text-2xl font-bold text-blue-900">
+                    {accessedDatasetsCount}
+                  </p>
+                  <p className="text-sm font-medium text-blue-800">
+                    Your Datasets
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Link href="/signup" className="text-sm font-medium text-blue-700 hover:underline">
+                    Create account to access data
+                  </Link>
+                </>
+              )}
+
             </div>
           </div>
         </div>
@@ -139,7 +151,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
             </h3>
             
           </div>
-          {lastAccessedDataset ? (
+          {lastAccessedDataset.user_id ? (
             <div className="space-y-3">
 
               <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">

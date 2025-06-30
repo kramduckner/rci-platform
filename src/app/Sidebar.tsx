@@ -36,7 +36,7 @@ const navigationItems = [
   { name: "Home", href: "/dashboard", icon: HomeIcon, current: true },
   { name: "Catalog", href: "/dashboard/catalog", icon: BookOpenIcon, current: false },
   { name: "My Requests", href: "/dashboard/requests", icon: ClipboardDocumentListIcon, current: false },
-  { name: "About", href: "/", icon: ClipboardDocumentListIcon, current: false },
+  { name: "About", href: "/", icon: UsersIcon, current: false },
 ];
 
   const pathname = usePathname();

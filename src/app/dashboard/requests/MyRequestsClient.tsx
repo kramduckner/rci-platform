@@ -109,6 +109,12 @@ const DataRequestsPanel = () => {
               <div className="text-center py-12 text-gray-500">
                 <p className="text-lg font-medium">You haven’t made any data requests yet.</p>
                 <p className="text-sm mt-2">Once you do, they’ll show up here with their status.</p>
+                <a
+                  href="/signup"
+                  className="inline-block text-sm px-4 my-4 py-2 rounded bg-sky-600 text-white hover:bg-blue-700"
+                >
+                  Create an Account to Get Started
+                </a>
               </div>
             )}
           </div>
