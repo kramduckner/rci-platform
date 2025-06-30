@@ -90,7 +90,9 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
                   Added {new Date(recentDataset.created_at).toLocaleDateString()}
                 </div>
                 <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+            <a href={`dataset/${recentDataset.id}`}>
                   View Details
+                    </a>
                 </button>
               </div>
             </div>
@@ -106,7 +108,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
               Your Accessed Datasets
             </h3>
             <a 
-              href="/catalog" 
+              href="/dashboard/catalog" 
               className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             >
               View All
@@ -163,7 +165,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a 
-            href="/requests" 
+            href="/dashboard/requests" 
             className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <div className="flex-shrink-0">
