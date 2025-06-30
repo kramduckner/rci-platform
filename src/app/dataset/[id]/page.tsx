@@ -15,6 +15,57 @@ export default function CardDetail({ params }: any) {
   const [loading, setLoading] = useState(true);
   const datasetId = params.id;
 
+
+  useEffect(() => {
+    if (user && datasetId) {
+      recordDatasetAccess();
+    }
+
+    async function recordDatasetAccess() {
+      // Check if an entry already exists
+      const { data: existing, error } = await supabase
+        .from("dataset_access")
+        .select("*")
+        .eq("user_id", user.id)
+        .eq("dataset_id", datasetId)
+        .single();
+
+      if (error && error.code !== "PGRST116") {
+        console.error("Error checking access:", error);
+        return;
+      }
+
+      if (existing) {
+        // Update last_access timestamp
+        const { error: updateError } = await supabase
+          .from("dataset_access")
+          .update({ last_access: new Date().toISOString() })
+          .eq("user_id", user.id)
+          .eq("dataset_id", datasetId);
+
+        if (updateError) console.error("Error updating last_access:", updateError);
+      } else {
+        // Insert new access record
+        const { error: insertError } = await supabase
+          .from("dataset_access")
+          .insert({
+            user_id: user.id,
+            dataset_id: datasetId,
+            last_access: new Date().toISOString(),
+          });
+
+        if (insertError) console.error("Error inserting dataset access:", insertError);
+      }
+    }
+  }, [user, datasetId]);
+
+
+
+
+
+
+  
+
   useEffect(() => {
     const fetchDataset = async () => {
       const { data, error } = await supabase
@@ -25,8 +76,6 @@ export default function CardDetail({ params }: any) {
       if (error || !data || data.length === 0) {
         return;
       }
-
-      console.log(data[0]);
 
       setDataset(data[0]);
 

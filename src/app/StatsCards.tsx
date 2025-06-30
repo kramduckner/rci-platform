@@ -1,4 +1,34 @@
-export default function StatsCards({ accessibleCount, totalDatasets,  recentDataset, userAccessedDatasets = [ ], accessibleDatasetsCount }:any) {
+"use client"
+
+import {useEffect, useState} from "react"
+import { useAuth } from "./auth-context";
+import { supabase } from "./supabaseClient";
+
+export default function StatsCards({ accessibleCount, totalDatasets,  recentDataset, accessibleDatasetsCount }:any) {
+
+  const {user} = useAuth()
+  const [lastAccessedDataset, setLastAccessedDataset] = useState({})
+
+  useEffect(()=>{
+
+    async function fetchDatasetAccess() {
+      const d = await supabase
+            .from("dataset_access")
+            .select("user_id, last_access, datasets(*)")
+            .eq("user_id", user.id)
+            .order("last_access", { ascending: false });
+      
+      setLastAccessedDataset(d.data[0])
+
+    }
+    
+    if (user){
+      
+      fetchDatasetAccess()
+    }
+  }, [user])
+  
+  
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
@@ -90,9 +120,9 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
                   Added {new Date(recentDataset.created_at).toLocaleDateString()}
                 </div>
                 <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
-            <a href={`dataset/${recentDataset.id}`}>
-                  View Details
-                    </a>
+                  <a href={`dataset/${recentDataset.id}`}>
+                    View Details
+                  </a>
                 </button>
               </div>
             </div>
@@ -105,42 +135,28 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
         <div className="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900">
-              Your Accessed Datasets
+              Your Last Accessed Dataset
             </h3>
-            <a 
-              href="/dashboard/catalog" 
-              className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-            >
-              View All
-            </a>
+            
           </div>
-          {userAccessedDatasets.length > 0 ? (
+          {lastAccessedDataset ? (
             <div className="space-y-3">
-              {userAccessedDatasets.slice(0, 3).map((dataset:any) => (
-              <div key={dataset.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
+
+              <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">
-                    {dataset.title || dataset.name || 'Untitled Dataset'}
+                    {lastAccessedDataset?.datasets?.title}
                   </p>
                   <p className="text-xs text-gray-500">
-                    {dataset.participant_count || 'N/A'} participants
+                    {lastAccessedDataset?.datasets?.description}
                   </p>
                 </div>
                 <button className="ml-2 text-blue-600 hover:text-blue-800 text-xs font-medium flex-shrink-0">
-                  Access
+                  <a href={`/dataset/${lastAccessedDataset?.datasets?.id}`}>
+                    View
+                  </a>
                 </button>
               </div>
-              ))}
-              {userAccessedDatasets.length > 3 && (
-                <div className="pt-2 text-center">
-                  <a 
-                    href="/my-datasets" 
-                    className="text-sm text-gray-500 hover:text-gray-700"
-                  >
-                    +{userAccessedDatasets.length - 3} more datasets
-                  </a>
-                </div>
-              )}
             </div>
           ) : (
             <div className="text-center py-4">
@@ -183,12 +199,8 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </a>
-          
-          
         </div>
       </div>
-      
-
       {/* Quick Start Guide */}
       {/* <div className="mt-6 pt-6 border-t border-gray-200"> */}
       {/*   <h3 className="text-lg font-medium text-gray-900 mb-3"> */}
@@ -222,5 +234,5 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
       {/*   </div> */}
       {/* </div> */}
     </>
-    );
+  );
 }

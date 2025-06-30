@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import WelcomeSection from "../WelcomeSection";
 import StatsCards from "../StatsCards";
 import { supabase } from "../supabaseClient";
+import { useAuth } from "../auth-context";
 
 export default async function Page() {
     const { data }:any = await supabase.from("datasets").select("*");
@@ -22,7 +23,6 @@ export default async function Page() {
                 totalDatasets={data.length}
                 recentDataset={recentDataset}
                 accessibleDatasetsCount={1}
-                userAccessedDatasets={[]}
               />
             </div>
           </main>
