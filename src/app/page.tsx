@@ -129,7 +129,7 @@ export default function AboutPage() {
                       </button>
                       <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                         <a href="/signup">
-                          Sign Up Get Access
+                          Sign Up Request Access
                         </a>
                       </button>
                     </div>
@@ -460,7 +460,9 @@ export default function AboutPage() {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                          <a href="/signup">
                           Create Account
+                          </a>
                         </button>
                         <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                           Contact Us

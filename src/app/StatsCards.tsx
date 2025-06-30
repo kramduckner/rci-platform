@@ -43,7 +43,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
         </div>
         <div className="bg-emerald-50 rounded-lg p-4 border border-gray-200">
           <a 
-            href="/catalog" 
+            href="/dashboard/catalog" 
             className="flex items-center justify-between hover:bg-emerald-100 transition-colors rounded-md p-1 -m-1 h-full"
           >
             <div>
@@ -149,7 +149,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
                 No datasets accessed yet
               </p>
               <a 
-                href="/data-catalog" 
+                href="/dashboard/catalog" 
                 className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
                 Browse Catalog
