@@ -1,13 +1,36 @@
+'use client'
+
 import React from 'react';
 import { User, Clock } from 'lucide-react';
 import Sidebar from "../Sidebar";
 import Header from "../Header";
+import { useAuth } from '../auth-context';
 
 export default function MyAccountPage() {
   
-  const userEmail = 'user@example.com';
-  const lastSignIn = 'June 24, 2025 at 3:42 PM';
+  const { user }:any = useAuth();
+  const isoString:any = user?.last_sign_in_at
+  let formattedLastSignIn: any
 
+  if (isoString){
+    const date:any = new Date(isoString);
+
+    // Format options
+    const options:any = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZoneName: "short"
+    };
+
+    // Format using Intl.DateTimeFormat
+    formattedLastSignIn = new Intl.DateTimeFormat("en-US", options).format(date);
+  }
+  
   return (
     <>
       <Header />
@@ -33,7 +56,7 @@ export default function MyAccountPage() {
                   </label>
                   <input
                     type="email"
-                    value={userEmail}
+                    value={user?.email}
                     readOnly
                     className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 cursor-not-allowed focus:outline-none"
                   />
@@ -46,7 +69,7 @@ export default function MyAccountPage() {
                   </label>
                   <input
                     type="text"
-                    value={lastSignIn}
+                    value={formattedLastSignIn}
                     readOnly
                     className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-900 cursor-not-allowed focus:outline-none"
                   />
