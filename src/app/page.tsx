@@ -5,6 +5,7 @@ import Header from "./Header";
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -102,7 +103,7 @@ export default function AboutPage() {
     }
   ];
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  
 
   return (
     <>

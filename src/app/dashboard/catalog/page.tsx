@@ -36,13 +36,15 @@ export default function Example() {
     setFiltered(filteredData);
   };
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onOpenSidebar={() => setSidebarOpen(true)}/>
       <div className="py-10">
         <main>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex">
-            <Sidebar />
+            <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
             <div className="flex-1 ml-8">
               {/* Hero */}
               <div className="mb-12">

@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import Sidebar from "../Sidebar";
 import Header from "../Header";
-//import Card from "../Card";
 
 export default function AboutPage() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -105,11 +105,11 @@ export default function AboutPage() {
 
   return (
     <>
-      <Header />
+      <Header onOpenSidebar={() => setSidebarOpen(true)}/>
       <div className="py-10">
         <main>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex">
-            <Sidebar />
+            <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
             <div className="min-h-screen bg-gray-50">
               {/* Hero Section */}
               <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-white">

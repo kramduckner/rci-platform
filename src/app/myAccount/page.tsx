@@ -1,13 +1,13 @@
 'use client'
 
-import React from 'react';
+import {useState} from 'react';
 import { User, Clock } from 'lucide-react';
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 import { useAuth } from '../auth-context';
 
 export default function MyAccountPage() {
-  
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user }:any = useAuth();
   const isoString:any = user?.last_sign_in_at
   let formattedLastSignIn: any
@@ -33,9 +33,9 @@ export default function MyAccountPage() {
   
   return (
     <>
-      <Header />
+      <Header onOpenSidebar={() => setSidebarOpen(true)}/>
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex my-10">
-        <Sidebar />
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
         <div className="min-h-screen py-8 flex-1">
           {user ? (
             <div className="max-w-2xl mx-auto px-4">
