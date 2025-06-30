@@ -26,6 +26,8 @@ export default function CardDetail({ params }: any) {
         return;
       }
 
+      console.log(data[0]);
+
       setDataset(data[0]);
 
       if (user) {
@@ -63,7 +65,7 @@ export default function CardDetail({ params }: any) {
         <main>
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="mb-6">
-              <Link href="/" className="text-sky-600 hover:text-sky-800">
+              <Link href="/dashboard" className="text-sky-600 hover:text-sky-800">
                 ← Back to Dashboard
               </Link>
             </div>
@@ -118,14 +120,13 @@ export default function CardDetail({ params }: any) {
 
                 {/* Right Column: Additional Info */}
                 <div>
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-3">Additional Information</h2>
+                  <h2 className="text-2xl font-semibold text-gray-900 mb-3">Dataset Overview</h2>
                   <ul className="text-gray-700 text-sm space-y-2">
                     <li><strong>Category:</strong> {dataset.category || "Uncategorized"}</li>
-                    <li><strong>Tags:</strong> {dataset.tags?.join(', ') || "None"}</li>
-                    <li><strong>Frequency:</strong> {dataset.update_frequency || "Unknown"}</li>
-                    <li><strong>Last Updated:</strong> {new Date(dataset.updated_at).toLocaleDateString() || "N/A"}</li>
-                    <li><strong>Rows:</strong> {dataset.row_count || "Unknown"}</li>
-                    <li><strong>File Size:</strong> {dataset.size || "Unknown"}</li>
+                    <li><strong>Region</strong> {dataset.region || "None"}</li>
+                    <li><strong>Last Updated:</strong> {new Date(dataset.created_at).toLocaleDateString() || "N/A"}</li>
+                    <li><strong>Rows:</strong> {dataset.number_of_rows || "Unknown"}</li>
+                    <li><strong>Format:</strong> {dataset.format || "Unknown"}</li>
                   </ul>
                 </div>
               </div>
