@@ -34,7 +34,7 @@ export default function AuthForm({ mode = 'login' }) {
       } else if (mode === 'signup') {
         setSuccess(true)
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
       
     } catch (err) {
