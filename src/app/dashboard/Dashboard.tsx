@@ -7,9 +7,10 @@ import WelcomeSection from "../WelcomeSection";
 import StatsCards from "../StatsCards";
 import { supabase } from "../supabaseClient";
 
-export default async function Dashboard({data}:any) {
+export default function Dashboard({data}:any) {
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
   const recentDataset = data?.toSorted((a:any, b:any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())[0];
     
   return (

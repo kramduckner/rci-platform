@@ -151,7 +151,7 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
             </h3>
             
           </div>
-          {lastAccessedDataset.user_id ? (
+          {lastAccessedDataset?.user_id ? (
             <div className="space-y-3">
 
               <div className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
