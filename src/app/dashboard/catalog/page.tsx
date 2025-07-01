@@ -11,6 +11,7 @@ export default function Example() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [filtered, setFiltered] = useState<any[]>([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,12 +29,12 @@ export default function Example() {
   const handleSearch = () => {
     const q = searchQuery.toLowerCase();
     const filteredData = datasets.filter((d) => {
-      
       const matchesQuery = d.title?.toLowerCase().includes(q) || d.description?.toLowerCase().includes(q);
-            return matchesQuery ;
+      return matchesQuery;
     });
     
     setFiltered(filteredData);
+    setHasSearched(true);
   };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -100,8 +101,8 @@ export default function Example() {
                 </div>
               </div>
 
-              {/* Featured */}
-              {featuredDatasets.length > 0 && (
+              {/* Featured - only show when not searched */}
+              {!hasSearched && featuredDatasets.length > 0 && (
                 <div className="mb-12">
                   <h2 className="text-2xl font-bold mb-6">Featured Datasets</h2>
                   <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -119,10 +120,12 @@ export default function Example() {
                 </div>
               )}
 
-              {/* All Datasets */}
+              {/* All Datasets / Search Results */}
               <div className="mb-8">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">All Datasets</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {hasSearched ? 'Search Results' : 'All Datasets'}
+                  </h2>
                   <span className="text-sm text-gray-500">
                     Showing {filtered.length} dataset{filtered.length !== 1 ? 's' : ''}
                   </span>
