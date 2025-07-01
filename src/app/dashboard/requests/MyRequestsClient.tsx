@@ -17,7 +17,7 @@ const DataRequestsPanel = () => {
             .from("dataset_access_requests")
             .select(`*, datasets(*)`)
             .eq("user_id", user?.id);
-
+      
       if (error) {
         console.error("Error fetching requests:", error);
         return;

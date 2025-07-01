@@ -18,7 +18,10 @@ export default function StatsCards({ accessibleCount, totalDatasets,  recentData
             .select("user_id, last_access, datasets(*)")
             .eq("user_id", user.id)
             .order("last_access", { ascending: false });
-      setAccessedDatasetsCount(d.data.length)
+
+      const approvedAccessDatasets = d.data.filter((d: any) => d.status === "Approved");
+
+      setAccessedDatasetsCount(approvedAccessDatasets.length)
       setLastAccessedDataset(d.data[0])
 
     }

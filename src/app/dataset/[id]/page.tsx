@@ -9,13 +9,28 @@ import Downloader from "../../Downloader";
 import Sidebar from "../../Sidebar"
 import { useEffect, useState } from "react";
 
+
+
+
 export default function CardDetail({ params }: any) {
   const { user }:any = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dataset, setDataset] = useState<any>(null);
-  const [hasAccess, setHasAccess] = useState(false);
+  const [access, setAccess]: any = useState("No Access");
   const [loading, setLoading] = useState(true);
   const datasetId = params.id;
+
+
+  const fetchAccessStatus = async () => {
+    const { data: accessData }: any = await supabase
+          .from("dataset_access_requests")
+          .select("*")
+          .eq("dataset_id", datasetId)
+          .eq("user_id", user.id);
+    
+    setAccess(accessData[0]?.status || "No Access");
+  };
+
 
   useEffect(() => {
     if (user && datasetId) {
@@ -23,7 +38,7 @@ export default function CardDetail({ params }: any) {
     }
 
     async function recordDatasetAccess() {
-      // Check if an entry already exists
+      
       const { data: existing, error } = await supabase
             .from("dataset_access")
             .select("*")
@@ -61,10 +76,6 @@ export default function CardDetail({ params }: any) {
   }, [user, datasetId]);
 
 
-
-
-
-
   
 
   useEffect(() => {
@@ -81,13 +92,7 @@ export default function CardDetail({ params }: any) {
       setDataset(data[0]);
 
       if (user) {
-        const { data: accessData } = await supabase
-              .from("dataset_access_requests")
-              .select("*")
-              .eq("dataset_id", datasetId)
-              .eq("user_id", user.id);
-
-        setHasAccess((accessData || []).length > 0);
+        await fetchAccessStatus();
       }
 
       setLoading(false);
@@ -98,16 +103,20 @@ export default function CardDetail({ params }: any) {
 
   const requestAccess = async () => {
     if (!user) return;
+
     await supabase.from("dataset_access_requests").insert({
       dataset_id: datasetId,
       user_id: user.id,
     });
-    alert("Access request submitted.");
+
+    
+    await fetchAccessStatus();
   };
+
 
   if (loading) return <div className="p-10">Loading...</div>;
   if (!dataset) return <div className="p-10">Dataset not found</div>;
-
+  
   return (
     <>
       <Header onOpenSidebar={() => setSidebarOpen(true)}/>
@@ -117,17 +126,12 @@ export default function CardDetail({ params }: any) {
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           
-
-          {/* Header with border */}
           <div className="border-b pb-6 mb-10">
             <h1 className="text-4xl font-bold text-gray-900">{dataset.title}</h1>
             <p className="text-gray-600 mt-2">Created on {new Date(dataset.created_at).toLocaleDateString()}</p>
           </div>
-
-          {/* About this data + Additional Info */}
           <section className="mb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Left Column: About */}
               <div>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-3">About this data</h2>
                 <p className="text-gray-700 mb-2">{dataset.description}</p>
@@ -146,14 +150,15 @@ export default function CardDetail({ params }: any) {
                   )}
 
                   {user ? (
-                    hasAccess ? (
+                    access === "Approved" ? (
                       <Downloader bucket={dataset.bucket} filePath={dataset.path} />
                     ) : (
                       <Button
                         onClick={requestAccess}
+                        disabled={access === "Pending"}
                         className="text-sm inline-block px-4 py-2 rounded bg-sky-600 text-white hover:bg-sky-700 cursor-pointer"
                       >
-                        Request Access
+                        {access === "Pending" ? "Request Pending" : "Request Access" }
                       </Button>
                     )
                   ) : (
@@ -209,7 +214,7 @@ export default function CardDetail({ params }: any) {
           )}
         </div>
       </main>
-    
+      
     </>
   );
 }
